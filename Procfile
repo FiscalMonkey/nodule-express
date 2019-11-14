@@ -1,2 +1,2 @@
-set DEBUG= :*
+set DEBUG=nodule-express:*
 web: npm start
