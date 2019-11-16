@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<% include partials/head.ejs %>
+<head>
+   <link rel='stylesheet' href='/stylesheets/style.css' />
+   <title>Postal Rate Calculator</title>
+</head>
+
+<body>
+   <% include partials/header.ejs %>
+   <div id="main" class="container-fluid">
+      <h1 class="mb-3">Postal Rate Calculator</h1>
+      <div id="result" class="mb-3">
+         <table>
+            <tr>
+               <td class="h4">Your charge:</td>
+               <td class="h4">$<%= rate.toFixed(2) %></td>
+            </tr>
+            <tr>
+               <td class="h4">Parcel Type:</td>
+               <td class="h4"><%= type %></td>
+            </tr>
+            <tr>
+               <td class="h4">Weight:</td>
+               <td class="h4"><%= weight %> oz.</td>
+            </tr>
+         </table>
+      </div>
+      <a href="/postal.html"><button class="btn btn-warning btn-lg">Back</button></a>
+   </div>
+   <% include partials/footer.ejs %>
+</body>
+
+</html>

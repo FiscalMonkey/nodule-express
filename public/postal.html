@@ -22,6 +22,22 @@
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
+      <script>
+         function weightLimit() {
+            var type = $('#type').val();
+            if (type == 'Letter (Stamped)' || type == 'Letter (Metered)') {
+               $('#weight').attr({
+                  "max" : 3.5
+               });
+               $('#ounce').html('3.5');
+            } else {
+               $('#weight').attr({
+                  "max" : 13
+               });
+               $('#ounce').html('13');
+            }
+         }
+      </script>
    <link rel='stylesheet' href='/stylesheets/style.css' />
 
    <title>Postal Rate Calculator</title>
@@ -54,23 +70,24 @@
    </header>
    <div id="main" class="container-fluid">
       <h1 class="mb-3">Postal Rate Calculation</h1>
-      <form action="/postal_rate.html" method="GET">
+      <form action="/post_rate" method="POST">
          <div class="form-row">
             <div class="form-group col-md-5 col-sm-6">
-               <select id="type" name="type" class="form-control" autofocus required>
+               <select id="type" name="type" class="form-control form-control-lg" onchange="weightLimit()" autofocus required>
                   <option value="" selected disabled>Parcel Type</option>
-                  <option value="stamp">Letter (Stamped)</option>
-                  <option value="meter">Letter (Metered)</option>
-                  <option value="flat">Large Envelopes (Flats)</option>
-                  <option value="package">First-Class Package Service—Retail</option>
+                  <option value="Letter (Stamped)">Letter (Stamped)</option>
+                  <option value="Letter (Metered)">Letter (Metered)</option>
+                  <option value="Large Envelope (Flats)">Large Envelope (Flats)</option>
+                  <option value="First-Class Package Service—Retail">First-Class Package Service—Retail</option>
                </select>
             </div>
             <div class="form-group col-md-2 col-sm-4">
-               <input type="number" name="weight" class="form-control" min="1" max="13" step="0.5"
+               <input type="number" id="weight" name="weight" class="form-control form-control-lg" min="1" max="13" step="0.5"
                   placeholder="Weight (oz)" required>
+               <small>Weight must be under <span id="ounce">13</span> ounces (oz)</small>
             </div>
          </div>
-         <button type="submit" class="btn btn-success">Calculate</button>
+         <button type="submit" class="btn btn-success btn-lg">Calculate Rate</button>
       </form>
    </div>
    <footer class="fixed-bottom">

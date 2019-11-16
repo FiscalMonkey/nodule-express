@@ -50,3 +50,7 @@ footer {
   display: inline-block;
   padding-right: 10px;
 }
+
+td {
+  width: 200px;
+}
