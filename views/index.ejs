@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <% include partials/head.ejs %>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <% include partials/header.ejs %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-  <% include partials/footer.ejs %>
+<% include partials/head.ejs %>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% include partials/header.ejs %>
+  <h1><%= title %></h1>
+  <p class="h3 text-muted">Welcome to <%= title %>!</p>
+  <form class="my-3">
+    <div class="form-group">
+      <label class="h4" for="email">Email</label>
+      <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="email@example.com" maxlength="30" required autofocus>
+      <div class="invalid-feedback"></div>
+    </div>
+    <button type="button" class="btn btn-success btn-lg" onclick="getData()">Get Data!</button>
+  </form>
+  <div class="jumbotron text-center" id="response"></div>
+</body>
+<% include partials/footer.ejs %>
+<script>
+  function getData() {
+    $('#response').html('<div class="spinner-border text-primary" role="status"></div>');
+    $.post("/getData", { email: $('#email').val() }, function (data, status) {
+      console.log(data[0]);
+      $('#response').html(JSON.stringify(data[0]));
+    })
+  }
+</script>
+
 </html>
