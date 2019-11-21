@@ -9,6 +9,9 @@ const { Pool } = require('pg');
 const pool = new Pool({connectionString: connectionString});
 //process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
+const {google} = require('googleapis');
+const tasks = google.tasks('v1');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'NoduleExpress' });
