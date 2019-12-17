@@ -78,7 +78,8 @@
             <h3 class="modal-title">Long-term Goals</h3>
           </div>
           <div class="modal-body">
-            <p class="h5">Long-term goals are important. They are the target and should guide all your short-term goals and tasks. </p>
+            <p class="h5">Long-term goals are important. They are the target and should guide all your short-term goals
+              and tasks. </p>
             <div id="lt_fields">
               <div class="input-group input-group-lg" data-idx="1">
                 <input type="text" class="form-control form-control-lg" id="lt_1" name="lt_1"
@@ -108,7 +109,12 @@
             <h3 class="modal-title">Short-term Goals</h3>
           </div>
           <div class="modal-body">
-            <p class="h5">Short-term goals are equally important. They are meant to last between weeks and up to a year.</p>
+            <p class="h5">Short-term goals are equally important. They are meant to last between weeks and up to a year.
+              They should be guided towards your long-term goals.</p>
+            <label for="lt_goals" class="h5">Long-term goals</label>
+            <ul id="lt_goals" class="h5">
+              <li>A short-term goal that should have loaded from the DB</li>
+            </ul>
             <div class="input-group input-group-lg">
               <input type="text" class="form-control form-control-lg" id="st_1" name="st_1"
                 placeholder="ex. Take guitar Lessons" autofocus>
@@ -137,8 +143,12 @@
             <h3 class="modal-title">Tasks</h3>
           </div>
           <div class="modal-body">
-            <p class="h5">Tasks and such. It turns out that there needs to be more text here so that the modal expands
-              to the correct size</p>
+            <p class="h5">Tasks and such. In the same way that short-term goals depend on long-term goals, tasks depend
+              on your short term goals.</p>
+            <label for="st_goals" class="h5">Short-term goals</label>
+            <ul id="st_goals">
+              <li class="h5">A short-term goal that should have loaded from the DB</li>
+            </ul>
             <div class="input-group input-group-lg">
               <input type="text" class="form-control form-control-lg" id="tk_1" name="tk_1"
                 placeholder="ex. Practice guitar" autofocus>
@@ -156,15 +166,16 @@
               <div class="input-group-append">
                 <button class="btn btn-danger disabled" type="button">&#128465</button>
               </div>
-              <div class="mt-3">
-                <button type="button" class="btn btn-outline-success" id="add_task">Add Goal</button>
-              </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" id="tk_back" class="btn btn-lg btn-secondary">Back</button>
-              <button type="button" id="tk_next" class="btn btn-lg btn-success">Finish</button>
+            <div class="mt-3">
+              <button type="button" class="btn btn-outline-success" id="add_task">Add Task</button>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" id="tk_back" class="btn btn-lg btn-secondary">Back</button>
+            <button type="button" id="tk_next" class="btn btn-lg btn-success">Finish</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -272,8 +283,8 @@
     var input = $(`<input type="text" class="form-control form-control-lg" id="lt_${intId}/>`);
     var inputAppend = $(`div class="input-group-append">`);
     var removeButton = $('<button class="btn btn-danger" type="button">&#128465</button></div></div>');
-    removeButton.click(function() {
-        $(this).parent().parent().remove();
+    removeButton.click(function () {
+      $(this).parent().parent().remove();
     });
     inputGroup.append(input);
     inputGroup.append(inputAppend);
