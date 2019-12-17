@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
 var db = require('./db.js');
+var bodyParser = require('body-parser');
+express().use(bodyParser.json());
 
 const saltRounds = 10;
 
@@ -28,12 +30,26 @@ function login (req, res) {
     bcrypt.compare(password, hash, (err, res) => {
       if (err) {
         console.log(err);
-        res.send(err);
       }
       console.log(`correct password = ${res}`);
       //return res;
     });
   });
+}
+
+function email(req, res) {
+  console.log(`Received email validation request`);
+  var email = req.query.email;
+  console.log(`received email: ${email}`);
+  db.email(email, function (num) {
+    if (num == 0) {
+      console.log(`valid email`);
+      return true;
+    } else {
+      console.log(`repeat email`);
+      return false;
+    }
+  })
 }
 
 
@@ -44,5 +60,6 @@ router.get('/', function(req, res, next) {
 
 module.exports = { 
   addUser : addUser,
-  login : login
+  login : login,
+  email : email
 };

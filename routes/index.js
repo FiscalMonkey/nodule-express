@@ -5,6 +5,8 @@ var users = require('./users.js');
 const db = require('./db.js')
 var app = express();
 var router = express.Router();
+var bodyParser = require("body-parser");
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,6 +15,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/signup', users.addUser);
 router.post('/login', users.login);
+router.get('/valid_email', users.email);
 
 router.post('/getData', function (req, res) {
   var email= req.body.email;

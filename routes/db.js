@@ -38,7 +38,25 @@ function login (email, callback) {
    });
 }
 
+function email (email, callback) {
+   console.log(`querying database with email`);
+   var query = 'SELECT COUNT(*) FROM users WHERE email = $1';
+   var values = [email];
+   pool.query(query, values, (err, res) => {
+      if (err) {
+         console.log(`ERROR: ${err}`);
+         return err.stack;
+      }
+      //if (res == true)
+      console.log(res.rows[0]);
+      var num = JSON.stringify(res.rows[0]["count"]).replace(/\"/g, "");
+      console.log(num);
+      callback(num);
+   });
+}
+
 module.exports = { 
    addUser : addUser,
-   login : login
+   login : login,
+   email : email
  };

@@ -8,34 +8,35 @@
 
 <body>
   <% include partials/header.ejs %>
-  <h1><%= title %></h1>
-  <p class="h3 text-muted">Welcome to <%= title %>!</p>
-  <label class="h4" for="login">Login</label>
-  <form id="login" class="my-3">
-    <div class="form-group">
-      <label class="h5" for="email">Email</label>
-      <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="email@example.com"
-        maxlength="30" required autofocus>
-      <div id="badEmail" class="invalid-feedback"></div>
-    </div>
-    <div class="form-group">
-      <labe class="h5" for="password">Password</labe>
-      <input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="Pa$$word"
-        required>
-      <div id="badPass" class="invalid-feedback"></div>
-    </div>
-    <button type="button" class="btn btn-success btn-lg" onclick="login()">Login</button>
-  </form>
-  <p>Don't have a login? <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#signUp">Sign
-      Up</button>
-  </p>
-  <div class="jumbotron text-center" id="response"></div>
+  <div id="main">
+    <h1><%= title %></h1>
+    <p class="h3 text-muted">Welcome to <%= title %>!</p>
+    <label class="h4" for="login">Login</label>
+    <form id="login" class="my-3">
+      <div class="form-group">
+        <label class="h5" for="email">Email</label>
+        <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="email@example.com"
+          maxlength="30" required autofocus>
+        <div id="badEmail" class="invalid-feedback"></div>
+      </div>
+      <div class="form-group">
+        <labe class="h5" for="password">Password</labe>
+        <input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="Pa$$word"
+          required>
+        <div id="badPass" class="invalid-feedback"></div>
+      </div>
+      <button type="button" class="btn btn-success btn-lg" onclick="login()">Login</button>
+    </form>
+    <p>Don't have a login? <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#signUp">Sign
+        Up</button>
+    </p>
+  </div>
   <div class="modal fade" id="signUp" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <form id="signUp_form">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+            <h5 class="modal-title">Sign Up</h5>
             <button type="button" class="close" data-dismiss="modal">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -68,6 +69,105 @@
       </form>
     </div>
   </div>
+  <div id="load" class="invisible"></div>
+  <div class="modal fade bd-example-modal-lg" id="long" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <form id="long_term">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Long-term Goals</h3>
+          </div>
+          <div class="modal-body">
+            <p class="h5">Long-term goals are important. They are the target and should guide all your short-term goals and tasks. </p>
+            <div id="lt_fields">
+              <div class="input-group input-group-lg" data-idx="1">
+                <input type="text" class="form-control form-control-lg" id="lt_1" name="lt_1"
+                  placeholder="ex. Learn guitar" autofocus>
+                <div class="input-group-append">
+                  <button class="btn btn-danger disabled" type="button">&#128465</button>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <button type="button" class="btn btn-outline-success" id="add_lt_goal">Add Goal</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="lt_next" class="btn btn-lg btn-primary">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <div class="modal fade bd-example-modal-lg" id="short" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <form id="short_term">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Short-term Goals</h3>
+          </div>
+          <div class="modal-body">
+            <p class="h5">Short-term goals are equally important. They are meant to last between weeks and up to a year.</p>
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control form-control-lg" id="st_1" name="st_1"
+                placeholder="ex. Take guitar Lessons" autofocus>
+              <div class="input-group-append">
+                <button class="btn btn-danger disabled" type="button">&#128465</button>
+              </div>
+            </div>
+            <div class="mt-3">
+              <button type="button" class="btn btn-outline-success" id="add_st_goal">Add Goal</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="st_back" class="btn btn-lg btn-secondary">Back</button>
+            <button type="button" id="st_next" class="btn btn-lg btn-primary">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <div class="modal fade bd-example-modal-lg" id="task" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <form id="tasks">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Tasks</h3>
+          </div>
+          <div class="modal-body">
+            <p class="h5">Tasks and such. It turns out that there needs to be more text here so that the modal expands
+              to the correct size</p>
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control form-control-lg" id="tk_1" name="tk_1"
+                placeholder="ex. Practice guitar" autofocus>
+              <input type="number" class="form-control form-control-lg col-2" id="tk_freq_num" name="tk_freq_num"
+                min="0" max="30" placeholder="#">
+              <div class="input-group-append">
+                <span class="input-group-text">times</span>
+              </div>
+              <select id="tk_freq_meas" class="form-control form-control-lg col-3" name="tk_freq_meas">
+                <option selected disabled>Frequency</option>
+                <option value="d">Daily</option>
+                <option value="w">Weekly</option>
+                <option value="m">Monthly</option>
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-danger disabled" type="button">&#128465</button>
+              </div>
+              <div class="mt-3">
+                <button type="button" class="btn btn-outline-success" id="add_task">Add Goal</button>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="tk_back" class="btn btn-lg btn-secondary">Back</button>
+              <button type="button" id="tk_next" class="btn btn-lg btn-success">Finish</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
   </div>
 </body>
 
@@ -75,7 +175,8 @@
 
 <script>
   function login() {
-    $('#response').html('<div class="spinner-border text-primary" role="status"></div>');
+    //$('#main').hide();
+    $('#load').html('<div class="spinner-border text-primary" role="status"></div>');
     $.post("/login", { email: $('#email').val(), password: $('#password').val() }, function (data, status) {
       console.log(`login data: ${data}`);
     })
@@ -84,31 +185,101 @@
   function validPassword() {
     var pass1 = $('#signUp_password').val();
     var pass2 = $("#signUp_verify").val();
-    if (pass1 != pass2) {
-      $("#signUp_verify").removeClass("is-valid").addClass("is-invalid");
-      $("#signUp_badVerify").html("Passwords must match!");
+    if (pass1 == '') {
+      $("#signUp_password").removeClass("is-valid").addClass("is-invalid");
+      $("#signUp_badPass").html("Password is required!");
+      return false;
     } else {
-      $("#signUp_verify").removeClass("is-invalid").addClass("is-valid");
-      $("#signUp_badVerify").html("");
+      $("#signUp_password").removeClass("is-invalid").addClass("is-valid");
+      $("#signUp_badPass").html("");
+      if (pass1 != pass2) {
+        $("#signUp_verify").removeClass("is-valid").addClass("is-invalid");
+        $("#signUp_badVerify").html("Passwords must match!");
+        return false;
+      } else {
+        $("#signUp_verify").removeClass("is-invalid").addClass("is-valid");
+        $("#signUp_badVerify").html("");
+        return true;
+      }
     }
   }
 
   function validEmail() {
-    console.log("validating Email: " + id);
-    $.get("/valid_email", { email: $('#email').val() }, function (data, status) {
-      console.log(data[0]);
-      if (data[0]) {
+    var format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var nEmail = $('#signUp_email').val();
+    if (nEmail != '' && nEmail.match(format)) {
+      console.log(`validating email: ${nEmail}`)
+      $.get("/valid_email", { email: nEmail }, function (data, status) {
+        console.log(data[0]);
+        if (data[0]) {
 
-      }
-    })
+        }
+
+      });
+      $('#signUp_email').removeClass("is-invalid").addClass("is-valid");
+      $('#signUp_badEmail').html("");
+      return true;
+    } else {
+      $('#signUp_email').removeClass("is-valid").addClass("is-invalid");
+      $('#signUp_badEmail').html("Valid email is required");
+      return false;
+    }
   };
 
   function signUp() {
-    console.log("Adding user: " + email);
-    $.post("/signup", { email: $('#signUp_email').val(), password: $('#signUp_password').val() }, function (data, status) {
-
-    })
+    let valEmail = validEmail();
+    let valPass = validPassword();
+    if (valPass && valEmail) {
+      let nEmail = $('#signUp_email').val();
+      let nPass = $('#signUp_password').val();
+      console.log(`Adding user: ${nEmail}`);
+      /*$.post("/signup", { email: nEmail, password: nPass }, function (data, status) {
+        console.log(status);
+      })*/
+      $('#signUp').one('hidden.bs.modal', function () { $('#long').modal('show'); }).modal('hide');
+    }
   }
+
+  $('#lt_next').click(function () {
+    // add longterm goals to db
+    $('#long').one('hidden.bs.modal', function () { $('#short').modal('show'); }).modal('hide');
+  });
+
+  $('#st_next').click(function () {
+    // add short-term goals to db
+    $('#short').one('hidden.bs.modal', function () { $('#task').modal('show'); }).modal('hide');
+  });
+
+  $('#st_back').click(function () {
+    $('#short').one('hidden.bs.modal', function () { $('#long').modal('show'); }).modal('hide');
+  });
+
+  $('#tk_next').click(function () {
+    // add tasks to db
+    // load summary page
+  });
+
+  $('#tk_back').click(function () {
+    // add longterm goals to db
+    $('#task').one('hidden.bs.modal', function () { $('#short').modal('show'); }).modal('hide');
+  });
+
+  $('#add_lt_goal').click(function () {
+    var lastField = $("#lt_fields div:last");
+    var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+    var inputGroup = $(`<div class="input-group input-group-lg">`);
+    inputGroup.data("idx", intId);
+    var input = $(`<input type="text" class="form-control form-control-lg" id="lt_${intId}/>`);
+    var inputAppend = $(`div class="input-group-append">`);
+    var removeButton = $('<button class="btn btn-danger" type="button">&#128465</button></div></div>');
+    removeButton.click(function() {
+        $(this).parent().parent().remove();
+    });
+    inputGroup.append(input);
+    inputGroup.append(inputAppend);
+    inputAppend.append(removeButton);
+    $("#lt_fields").append(inputGroup);
+  });
 </script>
 
 </html>
